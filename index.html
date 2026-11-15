@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GV Solutions | Software Development, Digital Marketing & Photoshop Services in Madurai</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        accent: {
+                            500: '#06b6d4',
+                            600: '#0891b2'
+                        },
+                        darkbg: '#0b0f19'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.18), transparent 45%),
+                        radial-gradient(circle at bottom left, rgba(6, 182, 212, 0.15), transparent 45%),
+                        #0b0f19;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-primary-600 selection:text-white">
+
+    <!-- Top Location & Contact Bar -->
+    <div class="bg-darkbg text-slate-300 text-xs sm:text-sm py-2.5 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6">
+                <span class="flex items-center gap-2">
+                    <i class="fa-solid fa-location-dot text-accent-500"></i>
+                    <span>34, Surveyor Colony, Madurai, Tamil Nadu</span>
+                </span>
+                <a href="tel:+919876543210" class="hover:text-white transition flex items-center gap-2">
+                    <i class="fa-solid fa-phone text-primary-500"></i> +91 98765 43210
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="mailto:info@gvsolutionsmadurai.com" class="hover:text-accent-500 transition hidden md:inline">info@gvsolutionsmadurai.com</a>
+                <div class="flex space-x-3 text-slate-400">
+                    <a href="#" aria-label="Facebook" class="hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn" class="hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-gradient-to-br from-primary-600 to-accent-500 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-primary-600/25 group-hover:scale-105 transition">
+                        GV
+                    </div>
+                    <div>
+                        <span class="text-xl sm:text-2xl font-black tracking-tight text-slate-900">GV <span class="text-primary-600">Solutions</span></span>
+                        <span class="block text-[11px] font-semibold tracking-wider text-slate-500 uppercase">IT & Creative Studio • Madurai</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-slate-600">
+                    <a href="#services" class="hover:text-primary-600 transition">Services</a>
+                    <a href="#estimator" class="hover:text-primary-600 transition">Project Estimator</a>
+                    <a href="#portfolio" class="hover:text-primary-600 transition">Our Work</a>
+                    <a href="#about" class="hover:text-primary-600 transition">About Us</a>
+                    <a href="#contact" class="hover:text-primary-600 transition">Location</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <button onclick="openConsultModal('General Inquiry')" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2.5 rounded-xl font-semibold shadow-md shadow-primary-600/20 transition transform hover:-translate-y-0.5">
+                        Get Free Quote
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-primary-600 p-2 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#services" class="block py-2 text-slate-700 font-medium hover:text-primary-600">Services</a>
+            <a href="#estimator" class="block py-2 text-slate-700 font-medium hover:text-primary-600">Project Estimator</a>
+            <a href="#portfolio" class="block py-2 text-slate-700 font-medium hover:text-primary-600">Our Work</a>
+            <a href="#about" class="block py-2 text-slate-700 font-medium hover:text-primary-600">About Us</a>
+            <a href="#contact" class="block py-2 text-slate-700 font-medium hover:text-primary-600">Location</a>
+            <button onclick="openConsultModal('General Inquiry')" class="w-full mt-2 bg-primary-600 text-white py-3 rounded-xl font-semibold shadow-md">
+                Get Free Quote
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-20 lg:py-28 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Copy -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white/10 text-accent-500 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold border border-white/10">
+                        <i class="fa-solid fa-microchip"></i> Premier IT & Digital Hub in Surveyor Colony, Madurai
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Smart Software, High-ROI Marketing & <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-accent-500">Creative Design</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Located at <strong>34, Surveyor Colony, Madurai</strong>, GV Solutions empowers local and global businesses with custom web & mobile software, result-driven digital marketing, and pixel-perfect Adobe Photoshop services.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
+                        <a href="#services" class="w-full sm:w-auto bg-primary-600 hover:bg-primary-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-primary-600/30 transition text-center">
+                            Explore Our Services
+                        </a>
+                        <a href="#estimator" class="w-full sm:w-auto glass-card hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-xl transition text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-calculator text-accent-500"></i> Estimate Cost
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Feature Highlights -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="glass-card p-6 rounded-2xl flex items-start gap-4 hover:border-primary-500/50 transition">
+                        <div class="w-12 h-12 rounded-xl bg-primary-600/20 text-primary-500 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Custom Software Development</h3>
+                            <p class="text-slate-400 text-sm mt-1">Web apps, billing/ERP software, e-commerce websites, and mobile apps built for speed and scale.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl flex items-start gap-4 hover:border-accent-500/50 transition">
+                        <div class="w-12 h-12 rounded-xl bg-accent-500/20 text-accent-500 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">360° Digital Marketing</h3>
+                            <p class="text-slate-400 text-sm mt-1">Local Madurai SEO, Google Ads, Meta (Facebook & Instagram) lead generation campaigns.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl flex items-start gap-4 hover:border-pink-500/50 transition">
+                        <div class="w-12 h-12 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Adobe Photoshop & Graphic Studio</h3>
+                            <p class="text-slate-400 text-sm mt-1">Photo retouching, background removal, e-commerce product editing, posters, and brand creatives.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-primary-600 font-bold uppercase tracking-widest text-xs">What We Do Best</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2">End-to-End IT & Creative Solutions</h2>
+                <p class="text-slate-600 mt-4">Three specialized divisions under one roof at Surveyor Colony to launch, market, and visually elevate your business.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Pillar 1: Software Development -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 hover:shadow-xl transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-primary-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-md shadow-primary-600/25">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Software Development</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            Tailored software engineering for retail shops, hospitals, schools, and enterprises across Tamil Nadu.
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-700 mb-8">
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-primary-600"></i> Custom Web Applications & Portals</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-primary-600"></i> POS Billing, Inventory & ERP Systems</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-primary-600"></i> E-Commerce Storefronts & Payment Gateway</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-primary-600"></i> Android & iOS Mobile App Development</li>
+                        </ul>
+                    </div>
+                    <button onclick="openConsultModal('Software Development')" class="w-full py-3.5 px-5 rounded-xl bg-white border border-slate-300 hover:border-primary-600 hover:bg-primary-600 hover:text-white text-slate-800 font-semibold transition text-sm">
+                        Discuss Software Project
+                    </button>
+                </div>
+
+                <!-- Pillar 2: Digital Marketing -->
+                <div class="bg-slate-900 text-white rounded-3xl p-8 border border-slate-800 shadow-xl flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-5 right-5 bg-accent-500/20 text-accent-500 text-xs font-bold px-3 py-1 rounded-full">
+                        High Growth
+                    </div>
+                    <div>
+                        <div class="w-14 h-14 bg-accent-500 text-slate-900 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-md">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Digital Marketing</h3>
+                        <p class="text-slate-300 text-sm mb-6 leading-relaxed">
+                            Data-driven online marketing campaigns designed to bring real leads, footfall, and sales to your business.
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-200 mb-8">
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-accent-500"></i> Search Engine Optimization (SEO & Local GMB)</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-accent-500"></i> Social Media Management (Instagram & FB)</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-accent-500"></i> Google Search & YouTube Video Ads</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-accent-500"></i> WhatsApp Bulk Marketing & Lead Funnels</li>
+                        </ul>
+                    </div>
+                    <button onclick="openConsultModal('Digital Marketing')" class="w-full py-3.5 px-5 rounded-xl bg-accent-500 hover:bg-accent-600 text-slate-900 font-bold transition text-sm">
+                        Boost Your Brand Online
+                    </button>
+                </div>
+
+                <!-- Pillar 3: Photoshop & Graphic Services -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 hover:shadow-xl transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-md">
+                            <span class="font-black tracking-tighter text-xl">Ps</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Photoshop & Design Studio</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            Dedicated graphic designers & Photoshop specialists for studios, e-commerce sellers, and print/digital branding.
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-700 mb-8">
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-600"></i> High-End Photo Retouching & Color Grading</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-600"></i> E-Commerce Product Clipping & Shadow Edit</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-600"></i> Old Photo Restoration & Manipulation</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-600"></i> Brochures, Flex Banners & Social Media Posters</li>
+                        </ul>
+                    </div>
+                    <button onclick="openConsultModal('Photoshop & Graphic Services')" class="w-full py-3.5 px-5 rounded-xl bg-white border border-slate-300 hover:border-blue-600 hover:bg-blue-600 hover:text-white text-slate-800 font-semibold transition text-sm">
+                        Order Photoshop / Design Work
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Service Cost Estimator -->
+    <section id="estimator" class="py-20 bg-slate-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-primary-600 font-bold uppercase tracking-widest text-xs">Instant Package Calculator</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2">Estimate Your Project Cost</h2>
+                <p class="text-slate-600 mt-3 text-sm sm:text-base">Select a service category and package tier to get an instant ballpark estimate in INR.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">1. Select Division</label>
+                        <select id="serviceCategory" onchange="updatePackages()" class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            <option value="software">Software & Web Development</option>
+                            <option value="marketing">Digital Marketing (Monthly)</option>
+                            <option value="photoshop">Photoshop & Graphic Design</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">2. Select Scope / Tier</label>
+                        <select id="packageTier" onchange="calculateQuote()" class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            <!-- Populated dynamically via JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-accent-500 font-bold">Estimated Investment</span>
+                        <div id="quoteDisplay" class="text-3xl sm:text-4xl font-black mt-1">₹15,000 – ₹25,000</div>
+                        <p id="quoteDesc" class="text-slate-400 text-xs mt-1.5">Includes responsive UI, SEO-ready structure, and 3 months free support.</p>
+                    </div>
+                    <button onclick="bookEstimatedService()" class="w-full sm:w-auto bg-primary-600 hover:bg-primary-500 text-white font-bold px-7 py-4 rounded-xl shadow-lg transition whitespace-nowrap">
+                        Lock This Quote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Showcase / Portfolio -->
+    <section id="portfolio" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-primary-600 font-bold uppercase tracking-widest text-xs">Recent Deliverables</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2">Crafted at GV Solutions</h2>
+                </div>
+                <div class="flex flex-wrap gap-2" id="portfolioFilters">
+                    <button onclick="filterWork('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs font-bold bg-primary-600 text-white transition">All Work</button>
+                    <button onclick="filterWork('software')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Software</button>
+                    <button onclick="filterWork('marketing')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Digital Marketing</button>
+                    <button onclick="filterWork('photoshop')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Photoshop</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="portfolioGrid">
+                <!-- Item 1 -->
+                <div class="portfolio-item software group rounded-3xl overflow-hidden border border-slate-200 bg-slate-50">
+                    <div class="h-48 bg-gradient-to-tr from-indigo-900 to-primary-600 p-6 flex flex-col justify-between text-white">
+                        <span class="text-xs font-semibold bg-white/20 w-fit px-3 py-1 rounded-full">Software Development</span>
+                        <i class="fa-solid fa-cash-register text-4xl opacity-80 self-end"></i>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg text-slate-900">Retail POS & GST Billing Suite</h4>
+                        <p class="text-slate-600 text-sm mt-2">Cloud-synced inventory and barcode billing solution built for Madurai textile & supermarket chains.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="portfolio-item marketing group rounded-3xl overflow-hidden border border-slate-200 bg-slate-50">
+                    <div class="h-48 bg-gradient-to-tr from-cyan-900 to-accent-500 p-6 flex flex-col justify-between text-white">
+                        <span class="text-xs font-semibold bg-white/20 w-fit px-3 py-1 rounded-full">Digital Marketing</span>
+                        <i class="fa-solid fa-bullseye text-4xl opacity-80 self-end"></i>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg text-slate-900">3X Local Lead Generation Campaign</h4>
+                        <p class="text-slate-600 text-sm mt-2">Google Local SEO & Meta ad funnels that boosted patient inquiries for a multi-specialty clinic in Madurai.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="portfolio-item photoshop group rounded-3xl overflow-hidden border border-slate-200 bg-slate-50">
+                    <div class="h-48 bg-gradient-to-tr from-slate-900 to-blue-700 p-6 flex flex-col justify-between text-white">
+                        <span class="text-xs font-semibold bg-white/20 w-fit px-3 py-1 rounded-full">Photoshop Studio</span>
+                        <i class="fa-solid fa-images text-4xl opacity-80 self-end"></i>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg text-slate-900">Jewelry & Apparel Catalog Retouching</h4>
+                        <p class="text-slate-600 text-sm mt-2">500+ high-resolution product cutouts, color correction, and festive campaign posters delivered in 48 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section -->
+    <section id="contact" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <!-- Office Details -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-accent-500 font-bold uppercase tracking-widest text-xs">Visit Our Office</span>
+                    <h2 class="text-3xl sm:text-4xl font-black">Let’s Build Something Great Together</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Drop by our office in Surveyor Colony, Madurai for a face-to-face consultation, or send us your requirements online.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div class="w-10 h-10 rounded-xl bg-primary-600/30 text-primary-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Office Address</h4>
+                                <p class="text-slate-300 text-sm mt-1">No. 34, Surveyor Colony, K. Pudur / Anna Nagar Vicinity, Madurai, Tamil Nadu 625007</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div class="w-10 h-10 rounded-xl bg-accent-500/20 text-accent-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-phone-volume"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Call / WhatsApp</h4>
+                                <p class="text-slate-300 text-sm mt-1">+91 98765 43210 • Mon – Sat (9:30 AM – 7:30 PM)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Email Us</h4>
+                                <p class="text-slate-300 text-sm mt-1">info@gvsolutionsmadurai.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Direct Contact Form -->
+                <div class="lg:col-span-7 bg-white text-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Send a Project Inquiry</h3>
+                    <p class="text-slate-500 text-sm mb-6">Tell us what you need—software, digital marketing, or Photoshop editing—and our Madurai team will respond promptly.</p>
+
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Your Name *</label>
+                                <input type="text" id="cName" required placeholder="Karthik Raja" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Mobile Number *</label>
+                                <input type="tel" id="cPhone" required placeholder="+91 98765 00000" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:outline-none text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Email Address</label>
+                                <input type="email" id="cEmail" placeholder="you@company.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Service Needed</label>
+                                <select id="cService" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:outline-none text-sm bg-white">
+                                    <option>Software / Website Development</option>
+                                    <option>Digital Marketing & SEO</option>
+                                    <option>Photoshop & Graphic Design</option>
+                                    <option>Complete Digital Package</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Project Details</label>
+                            <textarea id="cMsg" rows="3" required placeholder="Briefly describe your software, marketing, or Photoshop requirements..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:outline-none text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary-600/25 transition">
+                            Submit Inquiry
+                        </button>
+                    </form>
+
+                    <!-- Inline Confirmation Banner -->
+                    <div id="contactSuccess" class="hidden mt-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-center gap-3">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-xl"></i>
+                        <div>
+                            <strong>Thank you!</strong> Your message has been received by GV Solutions (34, Surveyor Colony, Madurai). Our team will call you shortly.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darkbg text-slate-400 py-8 border-t border-slate-800 text-xs sm:text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 <strong>GV Solutions</strong> • 34, Surveyor Colony, Madurai. All Rights Reserved.</p>
+            <p class="text-slate-500">Software Development • Digital Marketing • Photoshop Services</p>
+        </div>
+    </footer>
+
+    <!-- Consultation Modal -->
+    <div id="consultModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl">
+            <button onclick="closeConsultModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <span class="text-xs font-bold uppercase tracking-wider text-primary-600">GV Solutions Madurai</span>
+            <h3 id="modalHeading" class="text-2xl font-bold text-slate-900 mt-1 mb-2">Request Callback</h3>
+            <p class="text-slate-500 text-xs mb-5">34, Surveyor Colony, Madurai • Fast response within 30 minutes.</p>
+
+            <form id="modalForm" onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Full Name</label>
+                    <input type="text" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Phone / WhatsApp Number</label>
+                    <input type="tel" required placeholder="+91 98765 43210" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Selected Service</label>
+                    <input type="text" id="modalServiceInput" readonly class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 font-semibold text-slate-700 text-sm">
+                </div>
+                <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3.5 rounded-xl shadow-md transition">
+                    Confirm Request
+                </button>
+            </form>
+
+            <div id="modalSuccess" class="hidden text-center py-6 space-y-3">
+                <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4 class="text-xl font-bold text-slate-900">Request Submitted!</h4>
+                <p class="text-slate-600 text-sm">Our Surveyor Colony office team will get in touch with you shortly.</p>
+                <button onclick="closeConsultModal()" class="bg-slate-900 text-white px-6 py-2.5 rounded-xl text-sm font-semibold">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Estimator Data
+        const estimatorData = {
+            software: [
+                { label: 'Business Website (5–8 Pages)', price: '₹12,000 – ₹20,000', desc: 'Responsive design, WhatsApp integration, and basic local SEO.' },
+                { label: 'E-Commerce Store / Billing POS', price: '₹25,000 – ₹45,000', desc: 'Product catalog, payment gateway, GST invoicing, and inventory control.' },
+                { label: 'Custom ERP / Mobile App', price: '₹50,000 – ₹1,20,000+', desc: 'Tailored workflow automation, Android/iOS app, and cloud dashboard.' }
+            ],
+            marketing: [
+                { label: 'Local Madurai SEO & GMB Growth', price: '₹8,000 – ₹14,000 / mo', desc: 'Google Maps ranking, local keyword optimization, and monthly analytics.' },
+                { label: 'Social Media + Meta Ads Starter', price: '₹15,000 – ₹25,000 / mo', desc: '12 custom posters/reels + targeted Facebook & Instagram lead campaigns.' },
+                { label: 'Full-Funnel Digital Growth', price: '₹30,000 – ₹55,000 / mo', desc: 'SEO, Google Search Ads, Meta Ads, and dedicated account strategist.' }
+            ],
+            photoshop: [
+                { label: 'E-Commerce Product Editing (25 Photos)', price: '₹1,500 – ₹3,000', desc: 'Background removal, natural drop shadows, color correction & resizing.' },
+                { label: 'Brand Creatives & Poster Pack (10 Designs)', price: '₹3,500 – ₹6,500', desc: 'High-impact social media banners, flyers, and print-ready flex designs.' },
+                { label: 'Dedicated Monthly Photoshop Retainer', price: '₹12,000 – ₹22,000 / mo', desc: 'Priority turnaround for studios, agencies, and e-commerce sellers.' }
+            ]
+        };
+
+        function updatePackages() {
+            const cat = document.getElementById('serviceCategory').value;
+            const tierSelect = document.getElementById('packageTier');
+            tierSelect.innerHTML = '';
+            estimatorData[cat].forEach((item, index) => {
+                const opt = document.createElement('option');
+                opt.value = index;
+                opt.textContent = item.label;
+                tierSelect.appendChild(opt);
+            });
+            calculateQuote();
+        }
+
+        function calculateQuote() {
+            const cat = document.getElementById('serviceCategory').value;
+            const idx = document.getElementById('packageTier').value;
+            const selected = estimatorData[cat][idx];
+            document.getElementById('quoteDisplay').textContent = selected.price;
+            document.getElementById('quoteDesc').textContent = selected.desc;
+        }
+
+        function bookEstimatedService() {
+            const cat = document.getElementById('serviceCategory').value;
+            const idx = document.getElementById('packageTier').value;
+            const selected = estimatorData[cat][idx];
+            openConsultModal(`${selected.label} (${selected.price})`);
+        }
+
+        // Portfolio Filter
+        function filterWork(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-primary-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+            event.target.classList.remove('bg-slate-100', 'text-slate-700');
+            event.target.classList.add('bg-primary-600', 'text-white');
+
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        // Modal Functions
+        function openConsultModal(serviceName) {
+            const modal = document.getElementById('consultModal');
+            document.getElementById('modalServiceInput').value = serviceName;
+            document.getElementById('modalForm').classList.remove('hidden');
+            document.getElementById('modalSuccess').classList.add('hidden');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeConsultModal() {
+            const modal = document.getElementById('consultModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            document.getElementById('modalForm').classList.add('hidden');
+            document.getElementById('modalSuccess').classList.remove('hidden');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contactSuccess').classList.remove('hidden');
+            e.target.reset();
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            updatePackages();
+        };
+    </script>
+</body>
+</html>
